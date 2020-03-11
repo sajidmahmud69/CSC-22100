@@ -1,51 +1,47 @@
 package sample;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+
 public class MyCircle extends MyShape {
-    private float x_coordinate;
-    private float y_coordinate;
-    private float radius;
+    private double radius;
     private Color color;
 
+    MyShape point1 = new MyShape();
     // Constructor
     MyCircle(){
-        x_coordinate = 0;
-        y_coordinate = 0;
-        radius = 0;
-        color = Color.BLACK;
+        super();
     }
 
-    //Overloaded constructor
-    MyCircle(float inX, float inY, float inRadius, Color color){
-        this.x_coordinate = inX;
-        this.y_coordinate = inY;
+
+    MyCircle(double inX, double inY, double inRadius, Color color){
+        point1.setX(inX);
+        point1.setY(inY);
         this.radius = inRadius;
         this.color = color;
     }
 
     //Radius of the circle
-    public float getRadius(){
+    public double getRadius(){
         return radius;
     }
     //Area of the circle
-    public float getArea(){
-        return (float) (Math.PI * radius*radius);
+    public double getArea(){
+        return  (Math.PI * radius*radius);
     }
 
     //Perimeter of the circle
-    public float getPerimter (){
-        return (float) (2 * Math.PI * radius);
+    public double getPerimter (){
+        return  (2 * Math.PI * radius);
     }
 
-
     public String toString(){
-        return "Center is " + this.x_coordinate + " " + this.y_coordinate+
+        return "Center is " + point1.getX() + " " + point1.getY()+
                 " and the radius is " + radius;
     }
 
     public void draw(GraphicsContext g){
-        //g.setStroke(getColor());
         g.setFill(color);
-        g.fillOval(x_coordinate,y_coordinate, radius, radius);
+        g.fillOval(point1.getX(),point1.getY(), radius, radius);
     }
 }

@@ -1,30 +1,35 @@
 package sample;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import static java.lang.StrictMath.atan;
-import static java.lang.StrictMath.pow;
 
-public class MyLine extends MyShape{
+
+public class MyLine extends MyShape {
+    // Objctect of classes
+
+    MyShape point1 = new MyShape();
+    MyShape point2 = new MyShape();
+
+    //Attributes
+    Color color;
+
     // Constructrors
-    MyLine(){super();}
-    MyLine(double x1, double y1, double x2, double y2, Color color){super (x1,y1,x2,y2,color);}
 
-    public double getLength(){
-        double length = Math.sqrt(pow(getX2()-getX1(), 2) + pow (getY2()-getY1(), 2));
-        return length;
+    MyLine(){super();}
+    MyLine (double x, double y, double x2, double y2, Color color){
+        point1.setX(x);
+        point1.setY(y);
+        point2.setX(x2);
+        point2.setY(y2);
+        this.color = color;
     }
-    public double get_xAngle (){
-        double slope = (getY2() - getY1())/(getX2() - getX1());
-        return atan(slope);
-    }
+
     public String toString(){
-        return "Length of the line is " + getLength() +
-                " and the angle with respect to x-axis is " +
-                get_xAngle();
+        return "Length of the line is " +
+                " and the angle with respect to x-axis is ";
     }
-   public void draw(GraphicsContext g) {
-        g.setStroke(getColor());
+    public void draw(GraphicsContext g) {
+        g.setStroke(color);
         g.setLineWidth(3);
-        g.strokeLine(getX1(),getY1(),getX2(),getY2());
+        g.strokeLine (point1.getX(), point1.getY(), point2.getX(), point2.getY());
     }
 }
