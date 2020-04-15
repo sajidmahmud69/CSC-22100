@@ -20,8 +20,8 @@ public class Main extends Application {
         primaryStage.setTitle("Pie Chart of Different Alphabetical Characters");
         primaryStage.show();
 
-        MyPieChart chart = new MyPieChart(15);
+        MyPieChart chart = new MyPieChart(5);
         chart.draw(gc);
     }
-    public static void main(String[] args) { Application.launch(args); }
+    public static void main(String[] args) { launch(args); }
 }

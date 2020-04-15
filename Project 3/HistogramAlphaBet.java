@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.toMap;
 
 
 public class HistogramAlphaBet {
-    private File file =  new File("D:\\Mahmud\\Spring 2020\\Software design laboratory\\Homework\\Alice in Wonderland.txt");
+    private File file =  new File("D:\\Mahmud\\Spring 2020\\Software design labratory\\Homework\\Alice in Wonderland.txt");
 
     private ArrayList<String> line = new ArrayList<>();     // puts every word from the text file
     private HashMap<Character, Integer> hmap = new HashMap<>();    // maps the character to its occurrence

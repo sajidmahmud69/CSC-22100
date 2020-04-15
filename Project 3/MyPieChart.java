@@ -3,6 +3,8 @@ package sample;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
+
+import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
@@ -32,6 +34,7 @@ public class MyPieChart{
 
     public void draw (GraphicsContext gc){
         Iterator <Map.Entry<Character, Integer>> it = obj.sortedMap.entrySet().iterator();   // acts as a cursor
+        DecimalFormat roundFormat = new DecimalFormat("#.####");   // this is to make 4 digit decimals
 
         double startingAngle = 0;
         for (int i = 0; i < numberOfOccurrences; i++){
@@ -42,14 +45,23 @@ public class MyPieChart{
             remainingProbability -= probability;
 
             Random rand = new Random();
-            gc.setFill(Color.rgb(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-            gc.strokeArc(200, 200, 200, 200, startingAngle, probability * 360, ArcType.ROUND);
-            gc.fillArc (200, 200, 200, 200, startingAngle, probability * 360, ArcType.ROUND);
+            MyColor randomColor = MyColor.values()[rand.nextInt(MyColor.values().length)];
+
+            gc.setFill(randomColor.getMyColor());
+            gc.strokeArc(150, 150, 200, 200, startingAngle, probability * 360, ArcType.ROUND);
+            gc.fillArc (150, 150, 200, 200, startingAngle, probability * 360, ArcType.ROUND);
             startingAngle += probability * 360;
+
+
+            gc.fillText(m.getKey() + " : " + roundFormat.format((double) m.getValue()/obj.getTotalCharCount()),
+                    400, (i*20)+ 50);
+        }
+        if (numberOfOccurrences != 26){
+            gc.setFill(MyColor.DARK_GRAY.getMyColor());
+            gc.strokeArc(150, 150, 200, 200, startingAngle, remainingProbability * 360, ArcType.ROUND);
+            gc.fillArc (150, 150, 200, 200, startingAngle, remainingProbability * 360, ArcType.ROUND);
+            gc.fillText("All other probabilities:  " + roundFormat.format(remainingProbability), 200, 400);
         }
 
-        gc.setFill(Color.GRAY);
-        gc.strokeArc(200, 200, 200, 200, startingAngle, remainingProbability * 360, ArcType.ROUND);
-        gc.fillArc (200, 200, 200, 200, startingAngle, remainingProbability * 360, ArcType.ROUND);
     }
 }
