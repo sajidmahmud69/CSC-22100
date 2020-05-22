@@ -1,6 +1,5 @@
 package sample;
 
-import org.w3c.dom.ls.LSOutput;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -58,6 +57,7 @@ public class StudentsImpl {
             preparedStatement.setString(4, student.getEmail());
             preparedStatement.setString(5, student.getSex());
             preparedStatement.executeUpdate();
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
@@ -204,10 +204,10 @@ public class StudentsImpl {
         System.out.println("+------------+------------+-----------+------------------------------------+------+");
 
         for (Students student: allStudents){
-            System.out.println(String.format("|%-9s   |", student.getStudentId()) +  String.format("%-10s  |",student.getFirstName()) +
+            System.out.println(String.format("| %-9s  |", student.getStudentId()) +  String.format(" %-10s |",student.getFirstName()) +
                     " " + String.format("%-10s|",student.getLastName()) + " " +
-                    String.format("%-35s|",student.getEmail()) + " " + String.format("%-1s",student.getSex()) +
-                    "    |");
+                    String.format("%-35s|",student.getEmail()) + " " + String.format(" %-1s", student.getSex()) +
+                    "   |");
         }
         System.out.println("+------------+------------+-----------+------------------------------------+------+");
 
