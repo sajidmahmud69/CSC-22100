@@ -7,7 +7,7 @@ public class ConnectionConfiguration {
         Connection connection = null;
 
         try{
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "1234");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project?useSSL=false", "root", "1234");
         }catch (Exception e){
             System.out.println("Connection Failed");
             e.printStackTrace();
